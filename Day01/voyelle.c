@@ -28,7 +28,7 @@ char ft_voyelle(char c)
 
 int main()
 {
-    char  x = 'b';
+    char  x = 'i';
     ft_voyelle(x);
     return 0;
 }

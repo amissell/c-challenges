@@ -28,5 +28,4 @@ int main()
         printf("the new arr: %d", arr[i]);
 
     }
-
 }

@@ -5,10 +5,8 @@
 
 char name[CONTACT][50];
 char address_email[CONTACT][50];
-int phone_number[CONTACT][50];
+char phone_number[CONTACT][50];
 int count_contact = 0;
-
-
 
 
 
@@ -18,7 +16,7 @@ void ft_add_contact()
         printf("enter the name please: ");
         scanf("%s", name[count_contact]);
         printf("Enter the phone number:");
-        scanf("%i", phone_number[count_contact]);
+        scanf("%s", phone_number[count_contact]);
         printf("Enter address email: ");
         scanf("%s", address_email[count_contact]);
 
@@ -26,7 +24,21 @@ void ft_add_contact()
 }
 void ft_display_contact()
 {
-
+    if (count_contact == 0)
+    {
+        printf("no contact\n");
+    }
+    else
+        {
+            for(int i = 0; i < count_contact; i++)
+            {
+                printf ("_______________________________________________");
+                printf("contact %d\n", i + 1);
+                printf ("name: %s\n", name[i]);
+                printf ("address email: %s\n", address_email[i]);
+                printf ("Email: %s\n", phone_number[i]);
+            }
+        }
 }
 
 void ft_serach_contact()
@@ -60,6 +72,7 @@ int main()
     int choice;
     while(1)
     {
+        display_menu();
         scanf("%d", &choice);
 
         if (choice == 1)

@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 #define CONTACT 100
 
 char name[CONTACT][50];
@@ -43,6 +42,22 @@ void ft_display_contact()
 
 void ft_serach_contact()
 {
+    char search_nmae[50];
+    int serach = 0;
+    printf ("seach name: \n");
+    scanf("%s", search_nmae);
+    for (int i = 0; i < count_contact; i++)
+    {
+        if (strcmp(name[i], search_nmae) == 0)
+        {
+            printf("contact found\n");
+            printf ("name: %s\n", name[i]);
+            printf ("address email: %s\n", address_email[i]);
+            printf ("Email: %s\n", phone_number[i]);
+            serach = 1;
+            break;
+        }
+    }
 
 }
 

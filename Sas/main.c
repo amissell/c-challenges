@@ -1,19 +1,12 @@
 #include <stdio.h>
-#include <strings.h> 
+#include <string.h>
 
 #define CONTACT 100
 
 char name[CONTACT][50];
-char address_email[CONTACT][50];
 char phone_number[CONTACT][50];
+char address_email[CONTACT][50];
 int count_contact = 0;
-
-void remove_newline(char *str) {
-    size_t len = strlen(str);
-    if (len > 0 && str[len - 1] == '\n') {
-        str[len - 1] = '\0';
-    }
-}
 
 void ft_add_contact() {
     if (count_contact >= CONTACT) {
@@ -22,16 +15,16 @@ void ft_add_contact() {
     }
 
     printf("Enter the name: ");
-    fgets(name[count_contact], sizeof(name[count_contact]), stdin);
-    remove_newline(name[count_contact]);
+    scanf(" %[^\n]", name[count_contact]);
+    getchar(); 
 
     printf("Enter phone number: ");
-    fgets(phone_number[count_contact], sizeof(phone_number[count_contact]), stdin);
-    remove_newline(phone_number[count_contact]);
+    scanf(" %[^\n]", phone_number[count_contact]);
+    getchar();
 
     printf("Enter email address: ");
-    fgets(address_email[count_contact], sizeof(address_email[count_contact]), stdin);
-    remove_newline(address_email[count_contact]);
+    scanf(" %[^\n]", address_email[count_contact]);
+    getchar();
 
     count_contact++;
     printf("Contact added successfully!\n");
@@ -57,8 +50,8 @@ void ft_search_contact() {
     int found = 0;
 
     printf("Enter name to search: ");
-    fgets(search_name, sizeof(search_name), stdin);
-    remove_newline(search_name);
+    scanf(" %[^\n]", search_name);
+    getchar();
 
     for (int i = 0; i < count_contact; i++) {
         if (strcasecmp(name[i], search_name) == 0) {
@@ -80,24 +73,24 @@ void ft_update() {
     int found = 0;
 
     printf("Enter the name of the contact to update: ");
-    fgets(search_name, sizeof(search_name), stdin);
-    remove_newline(search_name);
+    scanf(" %[^\n]", search_name);
+    getchar();
 
     for (int i = 0; i < count_contact; i++) {
         if (strcasecmp(name[i], search_name) == 0) {
             printf("Contact found! Enter new details:\n");
 
             printf("New name: ");
-            fgets(name[i], sizeof(name[i]), stdin);
-            remove_newline(name[i]);
+            scanf(" %[^\n]", name[i]);
+            getchar();
 
             printf("New phone number: ");
-            fgets(phone_number[i], sizeof(phone_number[i]), stdin);
-            remove_newline(phone_number[i]);
+            scanf(" %[^\n]", phone_number[i]);
+            getchar();
 
             printf("New email address: ");
-            fgets(address_email[i], sizeof(address_email[i]), stdin);
-            remove_newline(address_email[i]);
+            scanf(" %[^\n]", address_email[i]);
+            getchar();
 
             printf("Contact updated successfully!\n");
             found = 1;
@@ -114,8 +107,8 @@ void ft_delete() {
     int found = 0;
 
     printf("Enter the name of the contact to delete: ");
-    fgets(search_name, sizeof(search_name), stdin);
-    remove_newline(search_name);
+    scanf(" %[^\n]", search_name);
+    getchar();
 
     for (int i = 0; i < count_contact; i++) {
         if (strcasecmp(name[i], search_name) == 0) {
@@ -135,7 +128,6 @@ void ft_delete() {
         printf("Contact not found.\n");
 }
 
-// Menu
 void display_menu() {
     printf("\n1. Add a contact\n");
     printf("2. Display contacts\n");
@@ -148,13 +140,11 @@ void display_menu() {
 
 int main() {
     int choice;
-    char temp[10];
 
     while (1) {
         display_menu();
-        if (fgets(temp, sizeof(temp), stdin) != NULL)
-            sscanf(temp, "%d", &choice);
-
+        scanf("%d", &choice);
+        getchar(); 
         switch (choice) {
             case 1: ft_add_contact(); break;
             case 2: ft_display_contact(); break;
@@ -162,9 +152,8 @@ int main() {
             case 4: ft_update(); break;
             case 5: ft_delete(); break;
             case 6: printf("Exiting...\n"); return 0;
-            default: printf("Invalid choice! Choose from 1-6.\n");
+            default: printf("Invalid choice.\n");
         }
     }
-
     return 0;
 }
